@@ -27,7 +27,7 @@ main() {
   )
   export "${prefix}CLOUDSDK_AUTH_ACCESS_TOKEN=$(jq -r '.data.token' <<<"$json")"
 
-  echo -e "~~~ :gcloud: ${brown}Vault GCP Creds Plugin${reset}: ${green}OK${reset}: oauth2 access token added to the environment."
+  echo -e "~~~ :gcloud: ${brown}Vault GCP Creds Plugin${reset}: ${green}OK${reset}: CLOUDSDK_AUTH_ACCESS_TOKEN added to the environment."
 }
 
 main "$@"
