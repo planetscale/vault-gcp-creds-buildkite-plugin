@@ -1,0 +1,22 @@
+version: '2'
+services:
+  lint-shellcheck:
+    image: koalaman/shellcheck-alpine:v0.8.0
+    volumes:
+      - ".:/plugin:ro"
+    entrypoint: sh
+    command:
+      - -c
+      - 'shellcheck /plugin/hooks/*'
+
+  lint-plugin:
+    image: buildkite/plugin-linter
+    volumes:
+      - ".:/plugin:ro"
+    command:
+      - --id=planetscale/vault-gcp-creds
+
+  tests:
+    image: buildkite/plugin-tester
+    volumes:
+      - ".:/plugin:ro"

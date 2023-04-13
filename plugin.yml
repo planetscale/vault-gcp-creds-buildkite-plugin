@@ -1,0 +1,20 @@
+name: Vault GCP Credentials
+description: Generate temporary GCP SA oauth2 credentials from Hashicorp Vault GCP secrets backend
+author: https://github.com/planetscale
+requirements:
+  - bash
+  - vault
+  - jq
+configuration:
+  properties:
+    vault_addr:
+      type: string
+    path:
+      type: string
+    account_name:
+      type: string
+    env_prefix:
+      type: string
+  required:
+    - vault_addr
+  additionalProperties: false
