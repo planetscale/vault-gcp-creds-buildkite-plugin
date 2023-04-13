@@ -21,7 +21,7 @@ setup() {
   export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_VAULT_ADDR="http://vault:8200"
 
   stub vault \
-    'read -format=json gcp/impersonated-account/bk-foo : cat tests/fixtures/vault-post-token.json'
+    'read -format=json gcp/impersonated-account/bk-foo/token : cat tests/fixtures/vault-post-token.json'
 
   run bash -c "source $PWD/hooks/environment && env | sort"
   assert_success
@@ -41,7 +41,7 @@ setup() {
   export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_PREFIX="BUILDKITE_"
 
   stub vault \
-    'read -format=json gcp-creds/impersonated-account/bar : cat tests/fixtures/vault-post-token.json'
+    'read -format=json gcp-creds/impersonated-account/bar/token : cat tests/fixtures/vault-post-token.json'
 
   run bash -c "source $PWD/hooks/environment && env | sort"
   assert_success
