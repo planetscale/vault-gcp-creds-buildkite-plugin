@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # vim: set ft=sh:
 
 set -eou pipefail
@@ -22,7 +23,7 @@ main() {
   json=$(vault \
     read \
     -format=json \
-    "${path}/impersonated-account/${account_name}"
+    "${path}/impersonated-account/${account_name}/token"
   )
   export "${prefix}CLOUDSDK_AUTH_ACCESS_TOKEN=$(jq -r '.data.token' <<<"$json")"
 
