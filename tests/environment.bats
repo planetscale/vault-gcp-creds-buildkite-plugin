@@ -21,7 +21,7 @@ setup() {
   export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_VAULT_ADDR="http://vault:8200"
 
   stub vault \
-    'read -format=json gcp/impersonated-account/bk-foo/token : cat tests/fixtures/vault-post-token.json'
+    'read -field=token gcp/impersonated-account/bk-foo/token : echo ya29.c.b0AT7lpjBRmO7ghBEyMV18evd016hq'
 
   run bash -c "source $PWD/hooks/environment && env | sort"
   assert_success
@@ -38,20 +38,20 @@ setup() {
   export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_VAULT_ADDR="http://vault:8200"
   export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_PATH="gcp-creds"
   export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ACCOUNT_NAME="bar"
-  export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_PREFIX="BUILDKITE_"
+  export BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_VAR="GOOGLE_OAUTH_ACCESS_TOKEN"
 
   stub vault \
-    'read -format=json gcp-creds/impersonated-account/bar/token : cat tests/fixtures/vault-post-token.json'
+    'read -field=token gcp-creds/impersonated-account/bar/token : echo ya29.c.b0AT7lpjBRmO7ghBEyMV18evd016hq'
 
   run bash -c "source $PWD/hooks/environment && env | sort"
   assert_success
-  assert_output --partial "BUILDKITE_CLOUDSDK_AUTH_ACCESS_TOKEN=ya29.c.b0AT7lpjBRmO7ghBEyMV18evd016hq"
+  assert_output --partial "GOOGLE_OAUTH_ACCESS_TOKEN=ya29.c.b0AT7lpjBRmO7ghBEyMV18evd016hq"
 
   unset BUILDKITE_PIPELINE_SLUG
   unset BUILDKITE_PLUGIN_VAULT_GCP_CREDS_VAULT_ADDR
   unset BUILDKITE_PLUGIN_VAULT_GCP_CREDS_PATH
   unset BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ACCOUNT_NAME
-  unset BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_PREFIX
+  unset BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_VAR
 
   unset BUILDKITE_CLOUDSDK_AUTH_ACCESS_TOKEN
 }

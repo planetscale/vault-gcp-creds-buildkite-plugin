@@ -4,7 +4,6 @@ author: https://github.com/planetscale
 requirements:
   - bash
   - vault
-  - jq
 configuration:
   properties:
     vault_addr:
@@ -13,7 +12,7 @@ configuration:
       type: string
     account_name:
       type: string
-    env_prefix:
+    env_var:
       type: string
   required:
     - vault_addr

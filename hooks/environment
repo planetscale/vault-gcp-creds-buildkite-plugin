@@ -13,19 +13,19 @@ main() {
   local addr="${BUILDKITE_PLUGIN_VAULT_GCP_CREDS_VAULT_ADDR:-}"
   local path="${BUILDKITE_PLUGIN_VAULT_GCP_CREDS_PATH:-gcp}"
   local account_name="${BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ACCOUNT_NAME:-bk-$BUILDKITE_PIPELINE_SLUG}"
-  local prefix="${BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_PREFIX:-}"
+  local env_var="${BUILDKITE_PLUGIN_VAULT_GCP_CREDS_ENV_VAR:-CLOUDSDK_AUTH_ACCESS_TOKEN}"
 
   if [[ -z "$addr" ]]; then
     echo -e "~~~ :gcloud: ${brown}Vault GCP Creds Plugin${reset}. No 'vault_addr' specified. ${red}Skipping.${reset}"
     exit 0
   fi
 
-  json=$(vault \
+  token=$(vault \
     read \
-    -format=json \
+    -field=token \
     "${path}/impersonated-account/${account_name}/token"
   )
-  export "${prefix}CLOUDSDK_AUTH_ACCESS_TOKEN=$(jq -r '.data.token' <<<"$json")"
+  export "${env_var}=$token"
 
   echo -e "~~~ :gcloud: ${brown}Vault GCP Creds Plugin${reset}: ${green}OK${reset}: CLOUDSDK_AUTH_ACCESS_TOKEN added to the environment."
 }
