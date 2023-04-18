@@ -10,13 +10,13 @@ services:
       - 'shellcheck /plugin/hooks/*'
 
   lint-plugin:
-    image: buildkite/plugin-linter
+    image: buildkite/plugin-linter:v2.0.2
     volumes:
       - ".:/plugin:ro"
     command:
       - --id=planetscale/vault-gcp-creds
 
   tests:
-    image: buildkite/plugin-tester
+    image: buildkite/plugin-tester:v4.0.0
     volumes:
       - ".:/plugin:ro"

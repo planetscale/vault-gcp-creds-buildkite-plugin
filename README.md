@@ -13,18 +13,19 @@ Add the following to your `pipeline.yml`:
 steps:
   - command: ./run_build.sh
     plugins:
-      - planetscale/vault-gcp-creds#v1.0.0:
+      - planetscale/vault-gcp-creds#v1.1.0:
           vault_addr: "https://my-vault-server"   # required
           path: "gcp"                             # optional. default "gcp"
           account_name: "my-pipeline"             # optional. default "bk-$BUILDKITE_PIPELINE_SLUG"
-          env_prefix: "BUILDKITE_"                # optional. default "" (prefix to add to CLOUDSDK_AUTH_ACCESS_TOKEN)
+          env_var: "CLOUDSDK_AUTH_ACCESS_TOKEN"   # optional. default "CLOUDSDK_AUTH_ACCESS_TOKEN"
 ```
 
 If authentication is successful the environment variables will be added to the environment:
 
 - `CLOUDSDK_AUTH_ACCESS_TOKEN`
 
-Setting the `env_prefix` property will add a prefix to each environment variable name, eg: `BUILDKITE_CLOUDSDK_AUTH_ACCESS_TOKEN`
+Set the `env_var` parameter to change the name of the environment variable, eg: `GOOGLE_OAUTH_ACCESS_TOKEN` for
+use with Terraform's Google Cloud provider.
 
 ## Ephemeral Credentials with vault-oidc-auth
 
@@ -37,7 +38,7 @@ steps:
     plugins:
       - planetscale/vault-oidc-auth#v1.0.0:
           vault_addr: "https://my-vault-server"
-      - planetscale/vault-gcp-creds#v1.0.0:
+      - planetscale/vault-gcp-creds#v1.1.0:
           vault_addr: "https://my-vault-server"
 ```
 
