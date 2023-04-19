@@ -27,7 +27,7 @@ main() {
   )
   export "${env_var}=$token"
 
-  echo -e "~~~ :gcloud: ${brown}Vault GCP Creds Plugin${reset}: ${green}OK${reset}: CLOUDSDK_AUTH_ACCESS_TOKEN added to the environment."
+  echo -e "~~~ :gcloud: ${brown}Vault GCP Creds Plugin${reset}: ${green}OK${reset}: ${env_var} added to the environment."
 }
 
 main "$@"
