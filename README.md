@@ -13,7 +13,7 @@ Add the following to your `pipeline.yml`:
 steps:
   - command: ./run_build.sh
     plugins:
-      - planetscale/vault-gcp-creds#v1.1.0:
+      - planetscale/vault-gcp-creds#v1.1.1:
           vault_addr: "https://my-vault-server"   # required
           path: "gcp"                             # optional. default "gcp"
           account_name: "my-pipeline"             # optional. default "bk-$BUILDKITE_PIPELINE_SLUG"
@@ -38,7 +38,7 @@ steps:
     plugins:
       - planetscale/vault-oidc-auth#v1.0.0:
           vault_addr: "https://my-vault-server"
-      - planetscale/vault-gcp-creds#v1.1.0:
+      - planetscale/vault-gcp-creds#v1.1.1:
           vault_addr: "https://my-vault-server"
 ```
 
