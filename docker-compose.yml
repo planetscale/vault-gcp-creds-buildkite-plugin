@@ -1,7 +1,7 @@
 version: '2'
 services:
   lint-shellcheck:
-    image: koalaman/shellcheck-alpine:v0.8.0
+    image: koalaman/shellcheck-alpine:v0.8.0@sha256:f42fde76d2d14a645a848826e54a4d650150e151d9c81057c898da89a82c8a56
     volumes:
       - ".:/plugin:ro"
     entrypoint: sh
@@ -10,13 +10,13 @@ services:
       - 'shellcheck /plugin/hooks/*'
 
   lint-plugin:
-    image: buildkite/plugin-linter:v2.0.4
+    image: buildkite/plugin-linter:v2.0.4@sha256:7c5ab788c569585723f4a5a9e701e23feb385b8ccdd083e76cf0e85b6d490b32
     volumes:
       - ".:/plugin:ro"
     command:
       - --id=planetscale/vault-gcp-creds
 
   tests:
-    image: buildkite/plugin-tester:v4.1.0
+    image: buildkite/plugin-tester:v4.1.0@sha256:cc69234d0d6dde7a0cde8e52b27be279cc5618490f932ef2497cb4bab052e08b
     volumes:
       - ".:/plugin:ro"
