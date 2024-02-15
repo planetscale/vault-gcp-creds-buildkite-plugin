@@ -17,6 +17,6 @@ services:
       - --id=planetscale/vault-gcp-creds
 
   tests:
-    image: buildkite/plugin-tester:v4.1.0@sha256:cc69234d0d6dde7a0cde8e52b27be279cc5618490f932ef2497cb4bab052e08b
+    image: buildkite/plugin-tester:v4.1.1@sha256:581f73aca88169912e23809f323437cced3cf22c28794bd7f96fbdf1c2caa5ab
     volumes:
       - ".:/plugin:ro"
