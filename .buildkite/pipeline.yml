@@ -4,15 +4,15 @@ agent:
 steps:
   - name: lint-shellcheck
     plugins:
-      - docker-compose#v4.16.0:
+      - docker-compose#v5.0.0:
           run: lint-shellcheck
 
   - name: lint-plugin
     plugins:
-      - docker-compose#v4.16.0:
+      - docker-compose#v5.0.0:
           run: lint-plugin
 
   - name: bats tests
     plugins:
-      - docker-compose#v4.16.0:
+      - docker-compose#v5.0.0:
           run: tests
