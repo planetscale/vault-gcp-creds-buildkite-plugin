@@ -36,7 +36,7 @@ to provide short-lived credentials for accessing Vault and GCP. Example:
 steps:
   - command: ./run_build.sh
     plugins:
-      - planetscale/vault-oidc-auth#v1.0.0:
+      - planetscale/vault-oidc-auth#v1.1.1:
           vault_addr: "https://my-vault-server"
       - planetscale/vault-gcp-creds#v1.1.1:
           vault_addr: "https://my-vault-server"
